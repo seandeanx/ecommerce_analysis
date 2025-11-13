@@ -134,7 +134,7 @@ sns.barplot(
     orient="h"
 )
 plt.title("Top 10 Most Profitable Customers")
-plt.xlabel("Total Sales in Millions(£)")
+plt.xlabel("Total Sales (£)")
 plt.ylabel("Customer ID")
 plt.tight_layout()
 plt.savefig("plots/top_customers.png")
