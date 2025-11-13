@@ -36,126 +36,143 @@ The analysis is done in Python using **Pandas**, **Matplotlib**, **Numpy**, and 
 
 ## Q1 – Monthly Sales Trend
 
-### **Goal**
-Identify monthly changes in total sales.
+### Goal
+Identify how total sales changed month-to-month throughout the dataset.
 
-### **What Was Done**
-- Converted `Date` to datetime  
-- Extracted `YearMonth`  
-- Grouped by month  
-- Summed `Sales`  
-- Created a monthly line chart  
+### What Was Done
+- Converted `Date` into a proper datetime format  
+- Extracted `YearMonth` for monthly grouping  
+- Grouped the dataset by month  
+- Calculated total monthly `Sales`  
+- Visualized the trend using a line chart  
 
-### **Findings**
-- Sales drop after December  
-- Stable growth from May → August  
-- Sharp spike from September → November  
-- December drops due to incomplete data  
+### Findings
+- Sales decline sharply after **December 2018** and remain low through **early 2019**  
+- From **May to August**, sales steadily rise and stay relatively stable  
+- A major increase appears from **September to November**, with **November being the peak month**  
+- **December 2019 shows a sharp drop**, likely because the dataset does **not** include the full month  
 
-### **Insight**
-Strong **Q4 seasonal demand** → likely holiday-driven.  
-Weak **Q1** → opportunity for targeted promotions.
+### Insight
+The business experiences strong **holiday-season demand (Oct–Nov)** and weaker performance in **early-year months**.  
+This suggests opportunities for targeted promotions, marketing, and inventory planning during low-sales periods.
 
 **Plot:** `plots/monthly_sales_trend.png`
+
 
 ---
 
 ## Q2 – Top 10 Most Frequently Purchased Products
 
-### **Goal**
-Identify which products sell the highest quantities.
+### Goal
+Identify which products were sold the most in terms of total quantity.
 
-### **What Was Done**
-- Grouped by `ProductName`  
-- Summed total `Quantity`  
-- Sorted descending  
-- Selected top 10  
-- Plotted horizontal bar chart  
+### What Was Done
+- Grouped the dataset by `ProductName`  
+- Calculated total `Quantity` sold for each product  
+- Sorted the products in descending order  
+- Selected the top 10 highest-selling items  
+- Created a horizontal bar chart to visualize results  
 
-### **Findings**
-- Top sellers (25,000–56,000+ units):  
-  - Popcorn Holder  
-  - WW2 Gliders Assorted Designs  
-  - Jumbo Bag Red Retrospot  
-- Mostly giftware & small fast-moving items  
+### Findings
+- The top-selling products range from **25,000 to 56,000+ units** sold.  
+- The highest-volume items include:  
+  - **Popcorn Holder**  
+  - **World War 2 Gliders Assorted Designs**  
+  - **Jumbo Bag Red Retrospot**  
+- Most top products are **small, low-cost, high-turnover gift and novelty items**.  
+- These products consistently outperform others in total units sold.
 
-### **Insight**
-A small set of products drives the majority of unit sales → keep these fully stocked.
+### Insight
+A small group of products contributes a large share of total unit sales.  
+These items should be prioritized in **inventory planning, restocking, and promotional strategies** to avoid stockouts and maximize revenue.
 
 **Plot:** `plots/top_products.png`
+
 
 ---
 
 ## Q3 – Products Purchased per Transaction
 
-### **Goal**
-Understand how many items customers buy in each order.
+### Goal
+Understand how many items customers typically buy in a single transaction.
 
-### **What Was Done**
-- Grouped by `TransactionNo`  
-- Summed `Quantity` per transaction  
-- Built a histogram  
+### What Was Done
+- Grouped the dataset by `TransactionNo`  
+- Calculated total `Quantity` purchased in each transaction  
+- Created a histogram to visualize the distribution of items per order  
 
-### **Findings**
-- Most transactions have **1–100 items**  
-- Medium (100–300) orders less common  
-- Rare bulk orders (300+) create a long right-tail  
+### Findings
+- The majority of transactions contain **between 1 and 100 items**, indicating small to medium retail orders  
+- Orders between **100 and 300 items** occur less frequently  
+- A small number of transactions exceed **300+ items**, creating a long right-tail  
+- Extremely large orders (700–2000 items) are rare but present, suggesting occasional bulk or wholesale buyers  
 
-### **Insight**
-Business is mostly **small retail orders**, with occasional bulk purchases.
+### Insight
+Most customers place **small retail-style orders**, while a minority of buyers place **large bulk purchases**.  
+This mix indicates a retail-driven business with occasional wholesale or high-volume clients.
 
 **Plot:** `plots/products_per_transaction.png`
+
 
 ---
 
 ## Q4 – Top 10 Most Profitable Customers
 
-### **Goal**
-Find the customers who generate the highest sales.
+### Goal
+Identify which customers generated the highest total sales.
 
-### **What Was Done**
-- Calculated line-level sales  
-- Grouped by `CustomerNo`  
-- Summed total `Sales`  
-- Sorted descending  
-- Selected top 10  
+### What Was Done
+- Calculated line-level `Sales` for each purchase  
+- Grouped the dataset by `CustomerNo`  
+- Summed total `Sales` per customer  
+- Sorted customers in descending order  
+- Selected the top 10 highest-revenue customers  
+- Visualized results using a horizontal bar chart  
 
-### **Findings**
-- Customer **14646** generated **£2M+**  
-- Others generate **£500K–£1.3M**  
-- Revenue is highly concentrated  
+### Findings
+- **Customer 14646** stands out significantly, generating **over £2 million** in total sales  
+- Other top customers each contribute between **£500,000 and £1.3 million**  
+- A small number of customers are responsible for a disproportionately large share of total revenue  
+- This indicates heavy reliance on **high-value repeat buyers** or small wholesale clients  
 
-### **Insight**
-Clear **80/20 rule** — small group of customers → majority of revenue.  
-High-value customers must be retained.
+### Insight
+The results reflect the classic **80/20 pattern** — a small number of customers contribute the majority of revenue.  
+Retaining these high-value customers through loyalty programs, targeted offers, and proactive communication is crucial for sustaining revenue.
 
 **Plot:** `plots/top_customers.png`
 
+
 ---
 
-# Q5 – Recommendations
+## Q5 – Recommendations
 
-### **Seasonality**
-- Focus marketing + inventory on **Q4**  
-- Boost **Feb–Apr** with discounts  
+Based on the sales trends, product performance, customer spending patterns, and transaction behavior observed in the dataset, the following recommendations can help optimize operations and improve revenue:
 
-### **Inventory Management**
-- Always stock top products  
-- Prepare extra inventory ahead of peak months  
+### 1. Seasonality & Demand Planning
+- Increase marketing efforts and inventory levels during **October–November**, when sales peak  
+- Introduce promotions, discounts, or targeted campaigns during **February–April**, the slowest months  
+- Plan staffing, logistics, and stock replenishment around these seasonal patterns
 
-### **Increase Basket Size**
-- Bundle deals  
-- “Frequently Bought Together”  
-- Multi-item discounts  
+### 2. Inventory Management
+- Prioritize restocking of **top-selling, fast-moving items** (e.g., Popcorn Holder, Gliders, Retrospot bags)  
+- Build safety stock ahead of high-demand periods to avoid stockouts  
+- Monitor lead times closely for high-turnover products
 
-### **Retention of High-Value Customers**
-- VIP / loyalty programs  
-- Personalized offers  
-- Analyze order cycles to prevent churn  
+### 3. Increase Average Basket Size
+- Introduce product bundles and curated sets  
+- Add “Frequently Bought Together” recommendations  
+- Offer tiered or multi-item discounts (e.g., "Buy 3, Get 1 Free")
 
-### **Bulk Buyers Strategy**
-- Identify large-order customers  
-- Offer wholesale pricing or special packages  
+### 4. Retain High-Value Customers
+- Create **VIP or Loyalty Programs** for top-spending customers  
+- Offer early access to new items, exclusive discounts, or priority support  
+- Track purchasing patterns to identify churn risks early
+
+### 5. Bulk Buyer Strategy
+- Identify customers who regularly place **large-volume orders**  
+- Provide wholesale-style pricing, custom packaging, or bulk-order incentives  
+- Maintain personalized communication to strengthen long-term business relationships
+
 
 ---
 
