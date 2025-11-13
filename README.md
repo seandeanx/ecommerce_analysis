@@ -225,5 +225,5 @@ python ecommerce_analysis.py
 | plt.xticks(rotation=45) | Rotated labels to prevent overlap. |
 | plt.tight_layout() | Adjusted spacing for clean layout. |
 | plt.savefig() | Saved figures to the plots folder. |
-r for use in your README.
+
 
