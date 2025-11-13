@@ -192,3 +192,83 @@ Run the script:
 python ecommerce_analysis.py
 ```
 
+# 📘 Glossary of Functions (How They Were Used in This Project)
+
+## **Pandas**
+
+### **`pd.read_csv("groceries.csv")`**  
+→ Loads the raw groceries dataset into a DataFrame.
+
+### **`df.dropna()`**  
+→ Removes rows with missing values to avoid errors during grouping and counting.
+
+### **`df[df["Quantity"] > 0]`**  
+→ Filters out invalid or negative quantities (returns or data entry mistakes).
+
+### **`pd.to_datetime(df["Date"])`**  
+→ Converts the `Date` column into a proper datetime object for time-based analysis.
+
+### **`df["YearMonth"] = df["Date"].dt.to_period("M")`**  
+→ Creates a `YearMonth` column used for monthly purchase trends.
+
+### **`df.groupby("Item")["Quantity"].sum()`**  
+→ Calculates total quantity sold per grocery item.
+
+### **`df.groupby("CustomerID")["TotalAmount"].sum()`**  
+→ Computes total spending per customer.
+
+### **`df["TotalAmount"] = df["Price"] * df["Quantity"]`**  
+→ Generates a new column for line-level spending.
+
+### **`df["DayOfWeek"] = df["Date"].dt.day_name()`**  
+→ Extracts weekday names for weekly shopping pattern analysis.
+
+### **`df.value_counts()`**  
+→ Used to find most commonly purchased items or frequent patterns.
+
+### **`.sort_values(ascending=False)`**  
+→ Sorts results from highest to lowest (top items, top categories, top customers).
+
+### **`.head(10)`**  
+→ Selects the top 10 most relevant rows after sorting.
+
+### **`.reset_index()`**  
+→ Converts groupby results back into a clean DataFrame for plotting.
+
+---
+
+# 📊 **Matplotlib & Seaborn**
+
+### **`plt.figure(figsize=(15, 6))`**  
+→ Sets the plot size to make charts readable.
+
+### **`sns.barplot(...)`**  
+→ Used to display:
+- Top grocery items  
+- Top customers  
+- Top categories  
+
+### **`sns.countplot(...)`**  
+→ Used to show frequency of purchases (e.g., busiest shopping days).
+
+### **`sns.lineplot(...)`**  
+→ Used for monthly or weekly purchase trends.
+
+### **`sns.histplot(...)`**  
+→ Used to analyze distribution of transaction sizes (items per order).
+
+### **`plt.title("...")`**  
+→ Adds a clear title to each chart.
+
+### **`plt.xlabel("...")`, `plt.ylabel("...")`**  
+→ Labels x-axis and y-axis for clarity.
+
+### **`plt.xticks(rotation=45)`**  
+→ Rotates labels (e.g., item names, dates) so they don’t overlap.
+
+### **`plt.tight_layout()`**  
+→ Ensures spacing is clean and nothing overlaps or gets cut off.
+
+### **`plt.savefig("plots/filename.png")`**  
+→ Saves each chart into the `plots/` folder for use in your README.
+
