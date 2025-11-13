@@ -48,10 +48,6 @@ plt.tight_layout()
 plt.savefig("plots/monthly_sales_trend.png")
 plt.show()
 
-
-#QUESTION 2: Most Frequently Purchased Products
-# group products and sum quantities
-
 #QUESTION 2: Most Frequently Purchased Products
 
 # group products and sum total quantity sold
@@ -127,11 +123,20 @@ top10_customers = customer_sales.head(10).reset_index()
 top10_customers.columns = ["CustomerNo", "TotalSales"]
 
 # visualize top 10
-plt.figure(figsize=(10, 5))
-sns.barplot(data=top10_customers, x="TotalSales", y="CustomerNo")
+# sort TOP customers by TotalSales (highest → lowest)
+top10_customers = top10_customers.sort_values("TotalSales", ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(
+    data=top10_customers,
+    x="TotalSales",
+    y="CustomerNo",
+    orient="h"
+)
 plt.title("Top 10 Most Profitable Customers")
-plt.xlabel("Total Sales (£)")
+plt.xlabel("Total Sales in Millions(£)")
 plt.ylabel("Customer ID")
 plt.tight_layout()
 plt.savefig("plots/top_customers.png")
 plt.show()
+
