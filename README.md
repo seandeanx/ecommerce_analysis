@@ -160,3 +160,90 @@ ecommerce_analysis_project/
 │   └── top_customers.png
 │
 └── README.md
+
+
+## How to Run
+
+Install dependencies:
+
+```bash
+pip install pandas matplotlib seaborn
+
+##Run the Analysis Script
+
+python ecommerce_analysis.py
+
+
+## Glossary of Functions (How They Were Used in This Project)
+
+### Pandas
+
+**`pd.read_csv("sales_transaction.csv")`**  
+→ Loads the raw CSV file into a DataFrame.
+
+**`df.dropna()`**  
+→ Removes rows with missing values so grouping and calculations don’t break.
+
+**`df[df["Quantity"] > 0]`**  
+→ Filters out returns/cancellations (negative quantities).
+
+**`pd.to_datetime(df["Date"])`**  
+→ Converts the `Date` column from string format to proper datetime objects.
+
+**`df["YearMonth"] = df["Date"].dt.to_period("M")`**  
+→ Creates a month-level period (e.g., `2019-05`) used for monthly sales aggregation.
+
+**`df["Sales"] = df["Price"] * df["Quantity"]`**  
+→ Calculates total sales value for each line of the dataset.
+
+**`df.groupby("YearMonth")["Sales"].sum()`**  
+→ Sums sales per month for the monthly trend chart.
+
+**`df.groupby("ProductName")["Quantity"].sum()`**  
+→ Sums quantity per product to find the most frequently purchased products.
+
+**`df.groupby("TransactionNo")["Quantity"].sum()`**  
+→ Sums quantity per transaction to find how many items are bought per order.
+
+**`df.groupby("CustomerNo")["Sales"].sum()`**  
+→ Sums sales per customer to identify the most profitable customers.
+
+**`.sort_values(ascending=False)`**  
+→ Sorts results from highest to lowest (used for top products and top customers).
+
+**`.head(10)`**  
+→ Selects the top 10 rows after sorting.
+
+**`.reset_index()`**  
+→ Converts grouped results back into a regular DataFrame for plotting.
+
+---
+
+### Matplotlib & Seaborn
+
+**`plt.figure(figsize=(15, 6))`**  
+→ Sets the size of the plot so labels and bars are readable.
+
+**`sns.lineplot(...)`**  
+→ Used to plot the monthly sales trend over time.
+
+**`sns.barplot(...)`**  
+→ Used to plot top products and top customers as bar charts.
+
+**`sns.histplot(...)`**  
+→ Used to plot the distribution of products purchased per transaction.
+
+**`plt.title("...")`**  
+→ Adds a title to each graph.
+
+**`plt.xlabel("..."), plt.ylabel("...")`**  
+→ Labels the x-axis and y-axis.
+
+**`plt.xticks(rotation=45)`**  
+→ Rotates x-axis labels so they don’t overlap.
+
+**`plt.tight_layout()`**  
+→ Adjusts spacing so chart elements don’t get cut off.
+
+**`plt.savefig("plots/filename.png")`**  
+→ Saves each plot as a PNG file in the `plots/` folder.
