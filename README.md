@@ -2,7 +2,7 @@
 
 ## Overview
 This project analyzes a large e-commerce transactions dataset (536,351 rows) to answer four main business questions about sales trends, product demand, and customer behavior.  
-The analysis is done in Python using **Pandas**, **Matplotlib**, and **Seaborn**.
+The analysis is done in Python using **Pandas**, **Matplotlib**, **Numpy**, and **Seaborn**.
 
 ---
 
