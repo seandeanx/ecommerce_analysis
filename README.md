@@ -174,18 +174,21 @@ ecommerce_analysis_project/
 │   └── top_customers.png
 │
 └── README.md
+```
 
 ---
+
 ## ⚙️ How to Run
 
 Install dependencies:
 
 ```bash
 pip install pandas matplotlib seaborn numpy
+```
 
-Then run the script
+Run the script:
 
+```bash
 python ecommerce_analysis.py
-
-
+```
 
