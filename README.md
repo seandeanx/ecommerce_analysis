@@ -209,38 +209,37 @@ Run the script:
 python ecommerce_analysis.py
 ```
 
-## Pandas Functions
+## Glossary of Functions (Pandas + Matplotlib/Seaborn)
+
+### Pandas Functions
 
 | Function | What It Did in This Project |
 |---------|------------------------------|
-| pd.read_csv() | Loaded the groceries CSV file into a DataFrame. |
-| df.dropna() | Removed missing rows to avoid errors in analysis. |
-| df[df["Quantity"] > 0] | Filtered out negative or invalid quantities. |
-| pd.to_datetime(df["Date"]) | Converted the Date column into datetime format. |
-| df["YearMonth"] = df["Date"].dt.to_period("M") | Created a month-level field for trend analysis. |
-| df["TotalAmount"] = df["Price"] * df["Quantity"] | Calculated line-level spending. |
-| df.groupby("Item")["Quantity"].sum() | Calculated total quantity sold per item. |
-| df.groupby("CustomerID")["TotalAmount"].sum() | Calculated total spending per customer. |
-| df["DayOfWeek"] = df["Date"].dt.day_name() | Extracted weekday name from Date. |
-| df.value_counts() | Found most common items or patterns. |
-| .sort_values(False) | Sorted results from highest to lowest. |
-| .head(10) | Retrieved the top 10 results. |
-| .reset_index() | Converted grouped results into a regular DataFrame. |
+| pd.read_csv() | Loaded the `sales_transaction.csv` dataset into a DataFrame. |
+| df.dropna() | Removed missing rows to avoid errors in grouping and calculations. |
+| df[df["Quantity"] > 0] | Filtered out negative quantities (returns/cancellations). |
+| pd.to_datetime(df["Date"]) | Converted the Date column into proper datetime format. |
+| df["YearMonth"] = df["Date"].dt.to_period("M") | Created a month-level field used for monthly sales trends. |
+| df["Sales"] = df["Price"] * df["Quantity"] | Calculated total sales value for each line in the dataset. |
+| df.groupby("YearMonth")["Sales"].sum() | Computed monthly total sales for Q1 analysis. |
+| df.groupby("ProductName")["Quantity"].sum() | Computed total units sold per product for Q2. |
+| df.groupby("TransactionNo")["Quantity"].sum() | Found how many items were bought per transaction (Q3). |
+| df.groupby("CustomerNo")["Sales"].sum() | Calculated total revenue per customer for Q4. |
+| .sort_values(ascending=False) | Sorted results from highest to lowest (used in Q2 & Q4). |
+| .head(10) | Selected the top 10 records after sorting. |
+| .reset_index() | Converted grouped results back into a clean DataFrame for plotting. |
 
 
-## Matplotlib & Seaborn Functions
+### Matplotlib & Seaborn Functions
 
 | Function | What It Did in This Project |
 |----------|------------------------------|
-| plt.figure(figsize=...) | Set figure size for better readability. |
-| sns.barplot() | Created bar charts for top items/customers/categories. |
-| sns.countplot() | Visualized frequency of purchases. |
-| sns.lineplot() | Created line charts for trends over time. |
-| sns.histplot() | Visualized distribution of items per transaction. |
-| plt.title() | Added a chart title. |
+| plt.figure(figsize=...) | Set figure size for readability. |
+| sns.lineplot() | Created the monthly sales trend line chart (Q1). |
+| sns.barplot() | Plotted top 10 products and top 10 customers (Q2 & Q4). |
+| sns.histplot() | Plotted distribution of items per transaction (Q3). |
+| plt.title() | Added chart titles. |
 | plt.xlabel(), plt.ylabel() | Set axis labels. |
-| plt.xticks(rotation=45) | Rotated labels to prevent overlap. |
-| plt.tight_layout() | Adjusted spacing for clean layout. |
-| plt.savefig() | Saved figures to the plots folder. |
-
-
+| plt.xticks(rotation=45) | Rotated labels to prevent overlapping. |
+| plt.tight_layout() | Ensured spacing was clean and nothing overlapped. |
+| plt.savefig() | Saved all plots into the `plots/` folder. |
